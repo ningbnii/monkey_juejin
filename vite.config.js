@@ -14,13 +14,13 @@ export default defineConfig({
       entry: 'src/main.js',
       userscript: {
         author: 'ningbnii',
-
-        name: '掘金签到',
+        name: '掘金自动签到助手',
         icon: 'https://www.wxbuluo.com/favicon.ico',
-        namespace: 'ningbnii/juejin-auto',
-        version: '0.0.1',
+        namespace: 'ningbnii/monkey_juejin',
+        version: '0.0.2',
         description: '这个油猴脚本可以自动为您在掘金网站上进行签到，省去了手动签到的烦恼。只需安装脚本，它将为您自动完成每日签到任务。',
         match: ['https://juejin.cn/*'],
+        license: 'GPLv3',
       },
       build: {
         externalGlobals: {

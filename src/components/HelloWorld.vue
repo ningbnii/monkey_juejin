@@ -65,7 +65,7 @@ setInterval(() => {
   if (today !== isSignIn.value) {
     signIn(today)
   }
-}, 1800)
+}, 1800000)
 
 // 签到
 
