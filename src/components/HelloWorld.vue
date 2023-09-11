@@ -29,12 +29,14 @@ function showQrcode() {
           title: '验证成功',
           text: '感谢您的关注',
           icon: 'success',
+          timer: 2000,
         })
       } else {
         Swal.fire({
           title: '验证失败',
           text: '验证码错误',
           icon: 'error',
+          timer: 2000,
         })
       }
     },
@@ -56,12 +58,15 @@ function showInfo() {
   })
 }
 
+const today = new Date().toLocaleDateString()
 onMounted(() => {
   isSignIn.value = GM_getValue('isSignIn')
+  if (!isSignIn.value || isSignIn.value !== today) {
+    signIn(today)
+  }
 })
 
 setInterval(() => {
-  const today = new Date().toLocaleDateString()
   if (today !== isSignIn.value) {
     signIn(today)
   }
@@ -84,16 +89,20 @@ function signIn(today) {
         if (err_no === 0) {
           const { data } = response.response
           const { sum_point, incr_point } = data
+          // 自动关闭弹窗
+
           Swal.fire({
             title: `签到成功`,
-            text: `获得积分：${incr_point}，总积分：${sum_point}`,
+            text: `获得矿石：${incr_point}，总矿石：${sum_point}`,
             icon: 'success',
+            timer: 2000,
           })
         } else {
           Swal.fire({
             title: '签到失败',
             text: err_msg,
             icon: 'error',
+            timer: 2000,
           })
         }
       } else {
@@ -101,6 +110,7 @@ function signIn(today) {
           title: '签到失败',
           text: '网络错误',
           icon: 'error',
+          timer: 2000,
         })
       }
       GM_setValue('isSignIn', today)
